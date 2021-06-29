@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const { PORT } = require("./config");
 const { NotFoundError } = require("./utils/errors");
 
 const app = express();
@@ -24,7 +25,6 @@ app.use((err, req, res, next) => {
         error: { message, status },
     })
 })
-const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
     console.log(`🚀 Server is running on http://localhost:${PORT}`);
