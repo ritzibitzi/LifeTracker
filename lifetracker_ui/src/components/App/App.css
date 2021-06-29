@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', arial, sans-serif;
+}
+
+
+.App {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto; 
+  background-color:red;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: #312F28;
+}
+
+.hero {
+  display: flex;
+  background-color: #FFC833;
+  justify-content: space-between;
+}
+
+.iconbar {
+  display: flex;
+  background-color: #312F28;
+}

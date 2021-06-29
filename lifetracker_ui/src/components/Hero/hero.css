@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+.hero {
+  display:flex;
+  flex-direction: row;
+  padding-top:74px;
+  padding-left:24px;
+}
+
+.imag {
+  width: 656px;
+  height:363px;
+}
+
+.col {
+  width: 700px;
+}
+
+.title {
+  font-size:64px;
+  font-weight: bold;
+  width:331px;
+  height:84px;
+}
+
+.desce {
+  padding-top: 35px;
+}
