@@ -1,4 +1,6 @@
-const db = require("../db")
+const bcrypt = require("bcrypt")
+const db = require("../db");
+const { BCRYPT_WORK_FACTOR } = require("../config");
 const { UnauthorizedError, BadRequestError } = require("../utils/errors");
 
 class User {
@@ -39,6 +41,7 @@ class User {
             throw new BadRequestError(`This username already exists: ${credentials.username}`)
         }
         //Take user's pw and hash it.
+        const hashedPassword = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR);
         //Take user's email and lowercase it.
         const lowerCasedEmail = credentials.email.toLowerCase();
         const lowerCasedUsername = credentials.username.toLowerCase();
@@ -51,14 +54,7 @@ class User {
         RETURNING id, username, email, first_name AS "firstName", last_name AS "lastName", created_at;
         `,
         [
-            /*lowerCasedUsername,
-            password,
-            firstName,
-            lastName,
-            lowerCasedEmail,
-            created_at*/
-
-            credentials.password,
+            hashedPassword,
             lowerCasedUsername,
             credentials.first_name,
             credentials.last_name,
