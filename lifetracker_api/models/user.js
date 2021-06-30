@@ -4,14 +4,37 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 const { UnauthorizedError, BadRequestError } = require("../utils/errors");
 
 class User {
+    static async makePublicUser(user) {
+        return {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            created_at: user.created_at
+            
+        }
+    }
     static async login(credentials) {
         //User should submit email and password
         //If any missing, throw an error.
-
+        const requiredFields = ["email", "password"];
+        requiredFields.forEach(field => {
+            if (!credentials.hasOwnProperty(field)) {
+                throw new BadRequestError(`Missing ${field} in request body.`)
+            }
+        })
         //Look up the user in the db by email
+        const user = await User.fetchUserByField(credentials.email, "email")
         //If user found, compare the submitted password w/ the password in the db.
         //If there is a match, return user
-
+        if (user) {
+            //Check if user is valid by comparing submitted pw to db pw.
+            const isValid = await bcrypt.compare(credentials.password, user.password);
+            if (isValid) {
+                return User.makePublicUser(user);
+            }
+        }
         //If anything goes wrong, throw error.
         throw new UnauthorizedError("Invalid email/password combo")
     }
@@ -51,7 +74,7 @@ class User {
         const result = await db.query(`
         INSERT INTO users (password, username, first_name, last_name, email)
         VALUES ($1, $2, $3, $4, $5)
-        RETURNING id, username, email, first_name AS "firstName", last_name AS "lastName", created_at;
+        RETURNING id, username, email, first_name, last_name, created_at;
         `,
         [
             hashedPassword,
@@ -63,7 +86,7 @@ class User {
         )
 
         const user = result.rows[0];
-        return user;
+        return User.makePublicUser(user);
     }
 
     static async fetchUserByField(fieldVal, fieldName) {
