@@ -2,6 +2,7 @@ require("dotenv").config()
 require("colors")
 //Does the port exist on process.env? Make it a num. Else, 3001
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001
+const SECRET_KEY = process.env.SECRET_KEY || "secret_dev"
 
 //Create variables to construct database uri
 function getDatabaseUri() {
@@ -23,10 +24,12 @@ const BCRYPT_WORK_FACTOR = 13;
 console.log("Lifetracker Config:".red)
 console.log("PORT:".blue, PORT)
 console.log("Database URI:".blue, getDatabaseUri())
+console.log("SECRET_KEY:".blue, SECRET_KEY)
 console.log("---")
 
 module.exports =  {
     PORT,
+    SECRET_KEY,
     BCRYPT_WORK_FACTOR,
     getDatabaseUri
 }

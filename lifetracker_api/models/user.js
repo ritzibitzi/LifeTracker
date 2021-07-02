@@ -4,13 +4,14 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 const { UnauthorizedError, BadRequestError } = require("../utils/errors");
 
 class User {
-    static async makePublicUser(user) {
+    static makePublicUser(user) {
         return {
             id: user.id,
             username: user.username,
             email: user.email,
             firstName: user.first_name,
             lastName: user.last_name,
+            is_admin: user.is_admin,
             created_at: user.created_at
             
         }
@@ -42,7 +43,7 @@ class User {
     static async register(credentials) {
         //User should submit email, pw, [RSVP STATUS], and [NUM OF GUESTS]
         //If any missing, throw an error.
-        const requiredFields = ["email", "username", "first_name", "last_name", "password"];
+        const requiredFields = ["email", "username", "first_name", "last_name", "password", "is_admin"];
         requiredFields.forEach(field => {
             if (!credentials.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
@@ -72,16 +73,17 @@ class User {
         //Create a new user in the db with all their info
         //return the user.
         const result = await db.query(`
-        INSERT INTO users (password, username, first_name, last_name, email)
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING id, username, email, first_name, last_name, created_at;
+        INSERT INTO users (password, username, first_name, last_name, email, is_admin)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING id, username, email, first_name, last_name, created_at, is_admin;
         `,
         [
             hashedPassword,
             lowerCasedUsername,
             credentials.first_name,
             credentials.last_name,
-            lowerCasedEmail
+            lowerCasedEmail,
+            credentials.is_admin
         ]
         )
 
