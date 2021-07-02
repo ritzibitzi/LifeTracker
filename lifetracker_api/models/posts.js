@@ -1,4 +1,4 @@
-const db = require("../db")
+/*const db = require("../db")
 const { BadRequestError, NotFoundError } = require("../utils/errors")
 
 class Post {
@@ -31,4 +31,4 @@ class Post {
     }
 }
 
-module.exports = Post
+module.exports = Post*/

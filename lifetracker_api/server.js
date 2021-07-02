@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { PORT } = require("./config");
 const security = require("./middleware/security")
+
 const authRoutes = require("./routes/auth")
 const postRoutes = require("./routes/posts")
 
@@ -20,6 +21,7 @@ app.use(morgan("tiny"));
 //If so, attach decoded user to res.locals
 app.use(security.extractUserFromJwt)
 
+//Other routes here
 app.use("/auth", authRoutes);
 app.use("/posts", postRoutes);
 
