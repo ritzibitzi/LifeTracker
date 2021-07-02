@@ -65,7 +65,7 @@ router.post("/progress/create", security.requireAuthenticatedUser, async (req, r
     }
   })
 
-//Get list of ideas
+//Get list of progress
 router.get("/progress", async (req, res, next) => {
     try {
         const { user } = res.locals
