@@ -11,12 +11,14 @@ CREATE TABLE users (
 
 CREATE TABLE loglines (
     id          SERIAL PRIMARY KEY,
-    user_id     INTEGER NOT NULL,
     title       TEXT NOT NULL,
     protagonist TEXT NOT NULL,
     incident    TEXT NOT NULL,
     goal        TEXT NOT NULL,
     conflict    TEXT NOT NULL,
+    user_id     INTEGER NOT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP NOT NULL DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
