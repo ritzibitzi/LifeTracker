@@ -2,7 +2,7 @@ const express = require("express")
 const security = require("../middleware/security")
 const router = express.Router()
 
-const { Logline, Ideas } = require("../models/activity");
+const { Logline, Ideas, Progress } = require("../models/activity");
 
 //Create a new logline
 router.post("/loglines/create", security.requireAuthenticatedUser, async (req, res, next) => {
@@ -41,7 +41,7 @@ router.post("/ideas/create", security.requireAuthenticatedUser, async (req, res,
     }
   })
 
-//Get
+//Get list of ideas
 router.get("/ideas", async (req, res, next) => {
     try {
         const { user } = res.locals
@@ -52,40 +52,28 @@ router.get("/ideas", async (req, res, next) => {
       }
 }) 
 
+//Create a new progress point
 router.post("/progress/create", security.requireAuthenticatedUser, async (req, res, next) => {
     try {
       // create a new post
       const { user } = res.locals
       //console.log(user.username); NOTE: RES.LOCALS RETURNS EMAIL AND SOME OTHER TEXT...
-      //const post = await Post.createNewPost({ user, post: req.body })
-      //return res.status(201).json({ post })
+      const post = await Progress.createNewPoint({ user, post: req.body })
+      return res.status(201).json({ post })
     } catch (err) {
       next(err)
     }
   })
 
+//Get list of ideas
 router.get("/progress", async (req, res, next) => {
     try {
-        //List all loglines
-    } catch(err) {
-        next(err);
-    }
+        const { user } = res.locals
+        const prog = await Progress.listProgressForUser(user)
+        return res.status(200).json({ prog })
+      } catch (err) {
+        next(err)
+      }
 }) 
-
-router.get("/:postId", async (req, res, next) => {
-    try {
-        //Fetch single post by id
-    } catch(err) {
-        next(err);
-    }
-}) 
-
-router.put("/:postId", async (req, res, next) => {
-    try {
-        //Update single post by id
-    } catch(err) {
-        next(err);
-    }
-})
 
 module.exports = router
