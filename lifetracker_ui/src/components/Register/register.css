@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+  .Register {
+  display: flex;
+  justify-content: center;
+  background-color: #FFC833;
+  }
+
+  .form {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    background-color: #312F28;
+    border-radius: 10px;
+    }
+
+  .input-field {
+    width: 717px;
+    height: 66px;
+    font-size: 24px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    }
+
+.btn2 {
+    background-color: #FFC833;
+}

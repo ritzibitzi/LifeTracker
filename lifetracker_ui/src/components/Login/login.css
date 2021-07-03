@@ -1,4 +1,58 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
+  margin: 0;
+  padding: 0;
+}
+
+.Login {
+display: flex;
+justify-content: center;
+background-color: #FFC833;
+}
+
+.card {
+display: flex;
+flex-direction:column;
+justify-content: center;
+align-items: center;
+padding-top:45px;
+width:837px;
+}
+
+.form {
+display: flex;
+flex-direction:column;
+align-items: center;
+background-color: #312F28;
+width: 837px;
+border-radius: 10px;
+font-size: 35px;
+}
+
+.bar {
+width: 717px;
+height: 66px;
+margin-top: 45px;
+border-radius: 10px;
+background-color: #C4C4C4;
+}
+
+.btn {
+margin-top: 90px;
+margin-bottom: 45px;
+}
+
+input[type='email'] {
+display:block;
+}
+
+.test {
+display: flex;
+flex-direction:column;
+align-items: center;
+text-align: center;
+}
+
+
+.topScreen {
+font-size: 64px;
+}
