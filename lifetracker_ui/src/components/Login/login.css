@@ -31,15 +31,12 @@ font-size: 35px;
 .bar {
 width: 717px;
 height: 66px;
-margin-top: 45px;
+margin-top: 20px;
 border-radius: 10px;
 background-color: #C4C4C4;
 }
 
-.btn {
-margin-top: 90px;
-margin-bottom: 45px;
-}
+
 
 input[type='email'] {
 display:block;

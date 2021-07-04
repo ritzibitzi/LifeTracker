@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
-import axios from "axios"
+import apiClient from "../../services/apiClient"
 import "./register.css"
 
 export default function Register({ user, setUser }) {
@@ -45,6 +45,7 @@ export default function Register({ user, setUser }) {
     setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
   }
 
+  //Where request is being handled.
   const handleOnSubmit = async () => {
     setIsProcessing(true)
     setErrors((e) => ({ ...e, form: null }))
@@ -57,7 +58,16 @@ export default function Register({ user, setUser }) {
       setErrors((e) => ({ ...e, passwordConfirm: null }))
     }
 
-    try {
+    const { data, error } = await apiClient.registerUser({ firstName: form.first_name, lastName: form.last_name, email: form.email, password: form.password })
+    console.log(data)
+    if (error) setErrors(setErrors((e) => ({ ...e, form: error })))
+    if (data?.user) {
+      setUser(data.user)
+      apiClient.setToken(data.token)
+    }
+
+    setIsProcessing(false)
+    /*try {
       const res = await axios.post("http://localhost:3001/auth/register", {
         name: form.name,
         email: form.email,
@@ -74,7 +84,7 @@ export default function Register({ user, setUser }) {
       setErrors((e) => ({ ...e, form: message ?? String(err) }))
     } finally {
       setIsProcessing(false)
-    }
+    }*/
   }
 
   return (
@@ -126,6 +136,18 @@ export default function Register({ user, setUser }) {
           </div>
 
           <div className="input-field">
+            <input
+              type="username"
+              name="username"
+              placeholder="Enter a valid username"
+              value={form.username}
+              onChange={handleOnInputChange}
+              className="bar"
+            />
+            {errors.username && <span className="error">{errors.username}</span>}
+          </div>
+
+          <div className="input-field">
             <label htmlFor="password"></label>
             <input
               type="password"
@@ -151,7 +173,7 @@ export default function Register({ user, setUser }) {
             {errors.passwordConfirm && <span className="error">{errors.passwordConfirm}</span>}
           </div>
 
-          <button className="btn" disabled={isProcessing} onClick={handleOnSubmit} font-size="48px">
+          <button className="btn" disabled={isProcessing} onClick={handleOnSubmit} font-size="48px" width="216px">
             {isProcessing ? "Loading..." : "Create Account"}
           </button>
         </div>

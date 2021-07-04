@@ -11,6 +11,7 @@ import './App.css';
 
 export default function App() {
   const [appState, setAppState] = useState({})
+  const [user, setUser] = useState({})
 
   return (
     <div className="App">
@@ -18,8 +19,8 @@ export default function App() {
         <Navbar user={appState.user} />
         <Routes>
           <Route path="/" element={<Landing />}/>
-          <Route path="/register" element={<Register setAppState={setAppState} />} />
-          <Route path="/login" element={<Login setAppState={setAppState} />} />
+          <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+          <Route path="/register" element={<Register user={user} setUser={setUser} />} />
           <Route
             path="/activity"
             element={<Activity setAppState={setAppState} appState={appState} user={appState?.user} />}

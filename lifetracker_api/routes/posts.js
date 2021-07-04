@@ -1,8 +1,8 @@
 const express = require("express")
 const security = require("../middleware/security")
 const router = express.Router()
-
 const { Logline, Ideas, Progress } = require("../models/activity");
+const permissions = require("../middleware/permissions")
 
 //Create a new logline
 router.post("/loglines/create", security.requireAuthenticatedUser, async (req, res, next) => {

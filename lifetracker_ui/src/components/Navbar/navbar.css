@@ -6,9 +6,15 @@
 .navbar {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  height:150px;
 }
 
 .logo {
+  margin-top:50px;
+  margin-bottom:45px;
+  width: 108px;
+  height: 108px;
 }
 
 .item {
@@ -30,6 +36,7 @@ li {
 }
 
 .btn {
+  text-decoration: none;
   font-size:30px;
   width:130px;
   height:42px;
@@ -38,6 +45,7 @@ li {
   border-radius: 10px;
   background-color: #FFC833;
   color: #312F28;
+  text-align:center;
 }
 
 .yel {

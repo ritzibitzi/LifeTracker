@@ -12,6 +12,7 @@
   max-width: 1400px;
   margin: auto; 
   background-color:red;
+  height:100vh;
 }
 
 .navbar {
