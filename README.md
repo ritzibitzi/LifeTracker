@@ -33,7 +33,7 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-![Imgur Gif](https://imgur.com/YQg0J1F)
+(https://imgur.com/YQg0J1F)
 
 ### Reflection
 
