@@ -14,14 +14,6 @@ export default function Login({ user, setUser }) {
     password: "",
   })
 
-  useEffect(() => {
-    // if user is already logged in,
-    // redirect them to the home page
-    if (user?.email) {
-      navigate("/")
-    }
-  }, [user, navigate])
-
   const handleOnInputChange = (event) => {
     if (event.target.name === "email") {
       if (event.target.value.indexOf("@") === -1) {
@@ -46,21 +38,15 @@ export default function Login({ user, setUser }) {
     }
 
     setIsProcessing(false)
-
-    /*try {
-      const res = await axios.post("http://localhost:3001/auth/login", form)
-      if (res?.data?.user) {
-        setUser(res.data.user)
-      } else {
-        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
-      }
-    } catch (err) {
-      console.log(err)
-      setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
-    } finally {
-      setIsProcessing(false)
-    }*/
   }
+
+  useEffect(() => {
+    // if user is already logged in,
+    // redirect them to the home page
+    if (user?.email) {
+      navigate("/")
+    }
+  }, [user, navigate])
 
   return (
     <div className="Login">
