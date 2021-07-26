@@ -10,20 +10,13 @@ export default function Register({ user, setUser }) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     passwordConfirm: "",
   })
 
-  useEffect(() => {
-    // if user is already logged in,
-    // redirect them to the home page
-    if (user?.email) {
-      navigate("/")
-    }
-  }, [user, navigate])
 
   const handleOnInputChange = (event) => {
     if (event.target.name === "email") {
@@ -58,34 +51,23 @@ export default function Register({ user, setUser }) {
       setErrors((e) => ({ ...e, passwordConfirm: null }))
     }
 
-    const { data, error } = await apiClient.registerUser({ firstName: form.first_name, lastName: form.last_name, email: form.email, password: form.password })
+    const { data, error } = await apiClient.registerUser({ first_name: form.first_name, last_name: form.last_name, email: form.email, username: form.username, password: form.password, is_admin: form.is_admin })
     console.log(data)
     if (error) setErrors(setErrors((e) => ({ ...e, form: error })))
-    if (data?.user) {
+    if (data) {
       setUser(data.user)
       apiClient.setToken(data.token)
     }
 
     setIsProcessing(false)
-    /*try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
-        name: form.name,
-        email: form.email,
-        password: form.password,
-      })
-      if (res?.data?.user) {
-        setUser(res.data.user)
-      } else {
-        setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
-      }
-    } catch (err) {
-      console.log(err)
-      const message = err?.response?.data?.error?.message
-      setErrors((e) => ({ ...e, form: message ?? String(err) }))
-    } finally {
-      setIsProcessing(false)
-    }*/
+
   }
+    // redirect, when user registers
+    useEffect(() => {
+      if (user?.email) {
+        navigate("/");
+      }
+    }, [user, navigate]);
 
   return (
     <div className="Register">
@@ -101,7 +83,7 @@ export default function Register({ user, setUser }) {
             <label htmlFor="firstName"></label>
             <input
               type="text"
-              name="firstName"
+              name="first_name"
               placeholder="First name"
               value={form.name}
               onChange={handleOnInputChange}
