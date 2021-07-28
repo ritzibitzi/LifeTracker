@@ -1,0 +1,22 @@
+.Logline-display {
+    background-color: #312F28;
+}
+
+.addLog {
+    color: #FFC833;
+    background-color: transparent;
+    font-weight: normal;
+    font-size: 64px;
+    margin: 25px auto auto 25px;
+}
+
+.logForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logInfo {
+    background-color: #312F28;
+}

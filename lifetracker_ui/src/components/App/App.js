@@ -7,6 +7,7 @@ import Activity from '../Activity/activity';
 import Landing from '../Landing/landing';
 import Register from '../Register/register';
 import Login from '../Login/login';
+import Logline from '../Logline/logline'
 import './App.css';
 import apiClient from "../../services/apiClient";
 
@@ -48,7 +49,11 @@ export default function App() {
           <Route path="/register" element={<Register user={user} setUser={setUser} />} />
           <Route
             path="/activity"
-            element={<Activity setAppState={setAppState} appState={appState} user={appState?.user} />}
+            element={<Activity setAppState={setAppState} appState={appState} user={user} />}
+          />
+          <Route
+            path="/activity/logline"
+            element={<Logline setAppState={setAppState} appState={appState} user={user} />}
           />
         </Routes>
       </BrowserRouter>
