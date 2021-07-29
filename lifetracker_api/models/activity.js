@@ -1,4 +1,4 @@
-const { BadRequestError } = require("../utils/errors")
+const { BadRequestError, UnauthorizedError } = require("../utils/errors")
 const db = require("../db")
 
 class Logline {
@@ -16,12 +16,19 @@ class Logline {
 
   }
 
-  static async createNewLogline({ post, user }) {
+  static async createNewLogline(user, post) {
       const requiredFields = ["title", "protagonist", "incident", "goal", "conflict"]
+      console.log("CREATE NEW", post.logForm.title)
+      post = post.logForm;
+      console.log("USER: ", user)
       
       requiredFields.forEach((field) => {
           if (!post.hasOwnProperty(field) || !post[field]) {
+            console.log("ERRRRRRRRRRRRRRRRR")
             throw new BadRequestError(`Required field - ${field} - missing from request body.`)
+          }
+          else {
+            console.log("GOOD!", post[field])
           }
         })
       const results = await db.query(
@@ -30,6 +37,8 @@ class Logline {
            RETURNING id, title, protagonist, incident, goal, conflict, user_id, created_at, updated_at`
            , [post.title, post.protagonist, post.incident, post.goal, post.conflict, user.email]
       )
+      console.log(results)
+      console.log("RES.ROWS: ", results.rows[0])
       return results.rows[0];
   }
 

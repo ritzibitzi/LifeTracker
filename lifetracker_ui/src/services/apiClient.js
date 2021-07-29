@@ -49,6 +49,11 @@ class ApiClient {
         return await this.request({ endpoint: `auth/user`, method:`GET `});
     }
 
+    async createLogline(logline) {
+        console.log("WAAIT", logline)
+        return await this.request({ endpoint: `posts/loglines/create`, method:`POST`, data: logline});
+    }
+
     async logout() {
         this.setToken(null);
         localStorage.setItem(this.tokenName, "")

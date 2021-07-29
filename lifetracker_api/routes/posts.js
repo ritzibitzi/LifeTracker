@@ -7,10 +7,13 @@ const permissions = require("../middleware/permissions")
 //Create a new logline
 router.post("/loglines/create", security.requireAuthenticatedUser, async (req, res, next) => {
     try {
+      console.log("You tried")
       // create a new post
       const { user } = res.locals
+      const  logline  = req.body;
+      console.log("HE", logline )
       //console.log(user.username); NOTE: RES.LOCALS RETURNS EMAIL AND SOME OTHER TEXT...
-      const post = await Logline.createNewLogline({ user, post: req.body })
+      const post = await Logline.createNewLogline( user, logline )
       return res.status(201).json({ post })
     } catch (err) {
       next(err)
