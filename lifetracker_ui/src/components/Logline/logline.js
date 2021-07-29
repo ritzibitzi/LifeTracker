@@ -91,7 +91,7 @@ export default function Logline({ user }) {
                                 className = "bar"
                             />
                         </div>
-                        <button className="btn" onClick={handleSubmit}>Save</button>
+                        <button className="btn" onClick={handleSubmit}><Link to="/activity">Save</Link></button>
                     </div>
                 </div>
             </div>
