@@ -21,7 +21,7 @@ export default function Navbar({ user, setUser }) {
         </Link>
         <ul className='buttons item'>
         <Link to="/activity" className="btn yel">Activity</Link> 
-        <Link to="/activity" className="btn yel">Loglines</Link> 
+        <Link to="/logline" className="btn yel">Loglines</Link> 
         <Link to="/activity" className="btn yel">Ideas</Link> 
         <Link to="/activity" className="btn yel">Progress</Link> 
         </ul>

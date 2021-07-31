@@ -1,0 +1,25 @@
+.logLines {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: row;
+}
+
+.overview {
+    display: flex;
+    justify-content: row;
+    align-items: center;
+}
+
+.yel {
+    background-color: #FFC833;
+    color: #312F28;
+    text-decoration: none;
+}
+
+.mod-box {
+    background-color: #c4c4c4;
+    width:400px;
+    margin: 25px;
+    border-radius:10px;
+    font-size:40px;
+}

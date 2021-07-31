@@ -24,8 +24,8 @@ router.post("/loglines/create", security.requireAuthenticatedUser, async (req, r
 router.get("/loglines", async (req, res, next) => {
     try {
         const { user } = res.locals
-        const loglines = await Logline.listLoglinesForUser(user)
-        return res.status(200).json({ loglines })
+        const getAllloglines = await Logline.listLoglinesForUser(user)
+        return res.status(200).json({ getAllloglines })
       } catch (err) {
         next(err)
       }

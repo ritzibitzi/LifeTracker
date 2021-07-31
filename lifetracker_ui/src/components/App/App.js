@@ -8,6 +8,7 @@ import Landing from '../Landing/landing';
 import Register from '../Register/register';
 import Login from '../Login/login';
 import Logline from '../Logline/logline'
+import DisplayLoglines from '../DisplayLoglines/displayLoglines'
 import './App.css';
 import apiClient from "../../services/apiClient";
 
@@ -54,6 +55,10 @@ export default function App() {
           <Route
             path="/activity/logline"
             element={<Logline setAppState={setAppState} appState={appState} user={user} />}
+          />
+          <Route
+            path="/logline"
+            element={<DisplayLoglines setAppState={setAppState} appState={appState} user={user} />}
           />
         </Routes>
       </BrowserRouter>
