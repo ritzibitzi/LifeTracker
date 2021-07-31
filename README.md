@@ -2,7 +2,7 @@
 
 # Week 3 Assignment: Life Tracker
 
-Submitted by: **NAME**
+Submitted by: **Maritza Padilla**
 
 Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 
@@ -32,7 +32,7 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-(https://imgur.com/YQg0J1F)
+(https://imgur.com/a/30DDkro)
 
 ### Reflection
 
